@@ -19,6 +19,7 @@ export default class GetReferee extends BaseTask {
 		const clientV2 = new TwitterApi(Env.get('TWITTER_BEARER_TOKEN'))
 		const today_date = new Date().toLocaleDateString();
 		const start_time = new Date(today_date).toISOString();
+		const minFriends = 2;
 		let data;
 		const referees = await Referee.query().where('status', false);
 		let user;
@@ -32,14 +33,14 @@ export default class GetReferee extends BaseTask {
 				let count = 0;
 				let userInfo;
 				if(userlist)
-					if(userlist.length >= 3){
+					if(userlist.length >= minFriends){
 						for(let i=0; i< userlist.length; i ++){
 							userInfo = await clientV2.v2.userByUsername(userlist[1].substr(1));
 							if(userInfo.data != undefined){
 								count ++;
 							}
 						}
-						if(count >= 3){
+						if(count >= minFriends){
 							await Referee.query().where("accountId", referee.$attributes.account_id).update({'status': true});
 						}
 						console.log('-------------:> ', count);
