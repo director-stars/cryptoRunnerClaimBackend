@@ -21,7 +21,7 @@ export default class GetReferee extends BaseTask {
 		const start_time = new Date(today_date).toISOString();
 		const minFriends = 2;
 		let data;
-		const referees = await Referee.query().where('status', false);
+		const referees = await Referee.query().where('isTweeted', false).andWhere('status', true);
 		let user;
 		await referees.forEach(async (referee) => {
 			user = await clientV2.v2.userByUsername(referee.$attributes.accountId);
@@ -41,7 +41,7 @@ export default class GetReferee extends BaseTask {
 							}
 						}
 						if(count >= minFriends){
-							await Referee.query().where("accountId", referee.$attributes.account_id).update({'status': true});
+							await Referee.query().where("accountId", referee.$attributes.account_id).update({'isTweeted': true});
 						}
 						console.log('-------------:> ', count);
 					};

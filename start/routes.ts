@@ -26,4 +26,6 @@ Route.get('/', async () => {
 
 Route.group(() => {
   Route.post("addList", "RefereesController.addList");
+  Route.post("getTweetedReferee", "RefereesController.getTweetedReferee");
+  Route.post("setRewardReferee", "RefereesController.setRewardReferee");
 }).prefix("api");

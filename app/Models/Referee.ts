@@ -12,7 +12,10 @@ export default class Referee extends BaseModel {
   public address: string
 
   @column()
-  public status: boolean
+  public isRewarded: boolean
+
+  @column()
+  public isTweeted: boolean
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
