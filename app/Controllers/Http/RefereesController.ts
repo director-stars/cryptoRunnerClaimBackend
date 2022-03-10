@@ -2,7 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Referee from "App/Models/Referee";
 
 export default class RefereesController {
-    public async addList({ request, params}: HttpContextContract){
+    public async addList({ request }: HttpContextContract){
         try {
             const rList = request.input('list');
             for(let i = 0; i < rList.length; i ++){
