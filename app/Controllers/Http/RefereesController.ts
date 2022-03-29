@@ -44,4 +44,46 @@ export default class RefereesController {
             return false;
         }        
     }
+
+    public async saveTwitterInfo({request}) {
+        let result;
+        try{
+            const account = request.input('account');
+            const twitterName = request.input('twitterName');
+            const referee = await Referee.query().where('address', account).first();
+            const twitterReferee = await Referee.query().where('accountId', twitterName).whereNot('address', account).first();
+            // console.log(referee);
+            if(twitterReferee) {
+                result = twitterName+" is already set on other address";
+                return {result: result}
+            }
+            if(referee){
+                referee.address = account;
+                referee.accountId = twitterName;
+                referee.save();
+            }
+            result = "Succcess saved";
+            return {result: result};
+        } catch (error) {
+            console.log(error)
+            result = 'DB error';
+            return {result: result};
+        }
+    }
+
+    public async getTwitterInfo({request}) {
+        try{
+            const account = request.input('account');
+            const referee = await Referee.query().where('address', account).first();
+            if(referee){
+                if(referee.accountId){
+                    return true;
+                }
+                return false;
+            }
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
 }

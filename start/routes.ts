@@ -28,4 +28,6 @@ Route.group(() => {
   Route.post("addList", "RefereesController.addList");
   Route.post("getTweetedReferee", "RefereesController.getTweetedReferee");
   Route.post("setRewardReferee", "RefereesController.setRewardReferee");
+  Route.post("saveTwitterInfo", "RefereesController.saveTwitterInfo");
+  Route.get("getTwitterInfo", "RefereesController.getTwitterInfo");
 }).prefix("api");

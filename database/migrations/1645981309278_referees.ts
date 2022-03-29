@@ -10,7 +10,7 @@ export default class Referees extends BaseSchema {
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
-      table.string('account_id')
+      table.string('account_id').unique()
       table.string('address')
       table.boolean('is_rewarded').defaultTo(false)
       table.boolean('is_tweeted').defaultTo(false)
