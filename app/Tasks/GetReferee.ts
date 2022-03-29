@@ -16,6 +16,7 @@ export default class GetReferee extends BaseTask {
 	}
 
 	public async handle() {
+		console.log('handle')
 		const clientV2 = new TwitterApi(Env.get('TWITTER_BEARER_TOKEN'))
 		// const today_date = new Date().toLocaleDateString();
 		// const start_time = new Date(today_date).toISOString();
