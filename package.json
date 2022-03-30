@@ -1,31 +1,40 @@
 {
-  "name": "api",
-  "version": "1.0.0",
-  "private": true,
+  "name": "adonis-fullstack-app",
+  "version": "4.1.0",
+  "adonis-version": "4.1.0",
+  "description": "The fullstack application boilerplate for Adonisjs",
+  "main": "index.js",
   "scripts": {
-    "start": "node ace serve --watch & node ace scheduler:run",
-    "build": "node ace build --production",
-    "schedule": "node ace scheduler:run"
+    "start": "node server.js",
+    "build": "node ace build --production --ignore-ts-errors && cp .env build/.env && cd build && yarn install --production  && node server.js",
+    "test": "node ace test"
+  },
+  "keywords": [
+    "adonisjs",
+    "adonis-app"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@adonisjs/ace": "^5.0.8",
+    "@adonisjs/auth": "^3.0.7",
+    "@adonisjs/bodyparser": "~2.0.9",
+    "@adonisjs/cors": "^1.0.7",
+    "@adonisjs/fold": "^4.0.9",
+    "@adonisjs/framework": "^5.0.9",
+    "@adonisjs/ignitor": "^2.0.8",
+    "@adonisjs/lucid": "^6.1.3",
+    "@adonisjs/session": "^1.0.27",
+    "@adonisjs/shield": "^1.0.8",
+    "adonis-scheduler": "^3.0.2",
+    "pg": "^8.7.3",
+    "twitter-api-v2": "^1.11.2"
   },
   "devDependencies": {
-    "@adonisjs/assembler": "^5.3.0",
-    "adonis-preset-ts": "^2.1.0",
-    "pino-pretty": "^7.5.1",
-    "typescript": "~4.5",
-    "youch": "^3.1.1",
-    "youch-terminal": "^2.1.3"
+    "nodemon": "^2.0.15"
   },
-  "dependencies": {
-    "@adonisjs/core": "^5.4.0",
-    "@adonisjs/lucid": "^16.3.2",
-    "@adonisjs/repl": "^3.1.0",
-    "adonis5-scheduler": "^2.0.2",
-    "luxon": "^2.3.1",
-    "pg": "^8.7.3",
-    "proxy-addr": "^2.0.7",
-    "reflect-metadata": "^0.1.13",
-    "source-map-support": "^0.5.21",
-    "sqlite3": "^5.0.2",
-    "twitter-api-v2": "^1.11.0"
+  "autoload": {
+    "App": "./app"
   }
 }
