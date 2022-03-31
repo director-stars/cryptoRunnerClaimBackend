@@ -1,3 +1,5 @@
+'use strict'
+
 const Referee = use("App/Models/Referee");
 
 class RefereesController {
@@ -86,3 +88,5 @@ class RefereesController {
         }
     }
 }
+
+module.exports = RefereesController
